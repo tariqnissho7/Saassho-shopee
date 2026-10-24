@@ -30,3 +30,388 @@
                             base: '#0B0F17',
                             card: '#141A26',
                             border: '#232D3F',
+                            muted: '#94A3B8'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #080B11;
+            color: #F3F4F6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF5C0 0%, #E6C665 50%, #B88E28 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, rgba(217,119,6,0.3), rgba(245,158,11,0.8), rgba(217,119,6,0.3)) 1;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #B45309 100%);
+            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-gold:hover {
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+            transform: translateY(-1px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #232D3F;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24 md:pb-12 custom-scrollbar">
+
+    <!-- TOP HEADER -->
+    <header class="sticky top-0 z-40 bg-opacity-90 bg-[#080B11] backdrop-blur-md border-b border-dark-border">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full border border-gold-500/40 bg-gold-500/10 flex items-center justify-center">
+                    <i class="fa-solid fa-crown text-gold-400 text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-serif font-bold text-xl md:text-2xl tracking-wider gold-gradient-text">
+                        SAASSHO+ AYZEL
+                    </h1>
+                    <p class="text-[11px] text-gold-500/80 uppercase tracking-widest font-semibold">Luxury Collection</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2 bg-emerald-950/50 border border-emerald-800/40 px-3 py-1.5 rounded-full text-emerald-400 text-xs font-medium">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Free Shipping</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-4xl mx-auto px-4 pt-6 pb-12">
+
+        <!-- ANNOUNCEMENT BANNER -->
+        <div class="mb-8 p-4 rounded-xl bg-gradient-to-r from-dark-card via-amber-950/20 to-dark-card border border-gold-500/30 flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 items-center justify-center text-gold-400 text-xl flex-shrink-0">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-gold-300 uppercase tracking-wider">Islandwide Complimentary Delivery</h3>
+                    <p class="text-xs text-dark-muted mt-0.5">All orders include complimentary premium direct shipping across Singapore.</p>
+                </div>
+            </div>
+            <span class="px-3 py-1 bg-gold-500/20 text-gold-300 text-xs font-semibold rounded-full border border-gold-500/40 whitespace-nowrap">
+                $0 Delivery Fee
+            </span>
+        </div>
+
+        <!-- CATEGORY TABS -->
+        <div class="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
+            <button onclick="filterCategory('all')" id="tab-all" class="category-btn active px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all border border-gold-500 bg-gold-500/20 text-gold-300">
+                All Products
+            </button>
+            <button onclick="filterCategory('saffron')" id="tab-saffron" class="category-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all border border-dark-border bg-dark-card text-dark-muted hover:border-gold-500/50">
+                Iran Premium Saffron
+            </button>
+            <button onclick="filterCategory('baby')" id="tab-baby" class="category-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all border border-dark-border bg-dark-card text-dark-muted hover:border-gold-500/50">
+                Premium Baby Care
+            </button>
+        </div>
+
+        <!-- PRODUCTS GRID -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4" id="products-container">
+            <!-- Dynamic products render here -->
+        </section>
+
+        <!-- CUSTOMER DETAILS & ORDER SUMMARY -->
+        <section class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Customer Form -->
+            <div class="lg:col-span-2 bg-dark-card rounded-2xl border border-dark-border p-5 md:p-6">
+                <h3 class="font-serif font-semibold text-lg text-gold-300 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-user-circle text-gold-500"></i> Customer & Delivery Details
+                </h3>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-dark-muted mb-1">Full Name <span class="text-amber-500">*</span></label>
+                        <input type="text" id="cust-name" placeholder="Enter your full name" 
+                            class="w-full bg-dark-base border border-dark-border rounded-lg px-3.5 py-2.5 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-dark-muted mb-1">Delivery Address <span class="text-amber-500">*</span></label>
+                        <textarea id="cust-address" rows="2" placeholder="Unit no, Street, Postal Code" 
+                            class="w-full bg-dark-base border border-dark-border rounded-lg px-3.5 py-2.5 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-dark-muted mb-1">Special Notes / Delivery Remarks (Optional)</label>
+                        <input type="text" id="cust-notes" placeholder="e.g. Leave at door, call before delivery" 
+                            class="w-full bg-dark-base border border-dark-border rounded-lg px-3.5 py-2.5 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Summary Card -->
+            <div class="bg-dark-card rounded-2xl border border-gold-500/30 p-5 md:p-6 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-serif font-semibold text-lg text-gold-300 mb-4 flex items-center justify-between">
+                        <span><i class="fa-solid fa-bag-shopping text-gold-500 mr-2"></i> Order Summary</span>
+                        <span id="cart-item-count" class="text-xs bg-gold-500/20 text-gold-300 px-2.5 py-0.5 rounded-full font-sans">0 Items</span>
+                    </h3>
+
+                    <!-- Selected Items Breakdown -->
+                    <div id="cart-breakdown" class="space-y-3 max-h-52 overflow-y-auto pr-1 custom-scrollbar text-xs border-b border-dark-border pb-4 mb-4">
+                        <p class="text-dark-muted text-center py-6">No items selected yet.<br>Select products above to build your order.</p>
+                    </div>
+
+                    <!-- Cost Calculation -->
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between text-dark-muted">
+                            <span>Subtotal</span>
+                            <span id="subtotal-val">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-emerald-400">
+                            <span>Islandwide Delivery</span>
+                            <span>FREE</span>
+                        </div>
+                        <div class="pt-2 border-t border-dark-border flex justify-between items-end text-base font-bold">
+                            <span class="text-gray-200">Total Cost</span>
+                            <span id="total-val" class="text-xl gold-gradient-text">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DESKTOP ORDER BUTTON -->
+                <button onclick="sendOrderViaWhatsApp()" class="hidden md:flex w-full mt-6 btn-gold text-black font-bold py-3.5 rounded-xl items-center justify-center gap-2 text-sm tracking-wide">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Send Order via WhatsApp
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- MOBILE FLOATING BOTTOM BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#080B11]/95 backdrop-blur-md border-t border-dark-border p-3 px-4 flex items-center justify-between gap-3">
+        <div>
+            <span class="text-[10px] uppercase text-dark-muted block">Total Order</span>
+            <span id="mobile-total-val" class="text-lg font-bold gold-gradient-text">$0.00</span>
+        </div>
+        <button onclick="sendOrderViaWhatsApp()" class="btn-gold text-black font-bold px-5 py-3 rounded-xl flex items-center gap-2 text-sm">
+            <i class="fa-brands fa-whatsapp text-lg"></i> Order via WhatsApp
+        </button>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // HARDCODED TARGET WHATSAPP PHONE NUMBER
+        const targetPhoneNumber = "6598911114";
+
+        // PRODUCTS CATALOG (NO IMAGES, LUXURY DESCRIPTIONS)
+        const products = [
+            { id: 1, option: "OPTION 1", name: "IRAN PREMIUM SAFFRON 2G", price: 17, category: "saffron", desc: "Authentic Grade-A Iranian Super Negin Saffron." },
+            { id: 2, option: "OPTION 2", name: "IRAN PREMIUM SAFFRON 5G", price: 28, category: "saffron", desc: "Grade-A Iranian Super Negin Saffron - Value Pack." },
+            { id: 3, option: "OPTION 3", name: "HUGGIES NATUREMADE XXXL PACK OF 2", price: 55, category: "baby", desc: "Ultra-breathable premium organic baby diapers." },
+            { id: 4, option: "OPTION 4", name: "HUGGIES NATUREMADE XXXL PACK OF 4", price: 95, category: "baby", desc: "Maximum comfort bulk pack for sensitive skin." },
+            { id: 5, option: "OPTION 5", name: "RASCALS & FRIENDS XXL PACK OF 2", price: 54, category: "baby", desc: "Premium absorbency diapers with zero nasties." },
+            { id: 6, option: "OPTION 6", name: "RASCALS & FRIENDS XXL PACK OF 3", price: 85, category: "baby", desc: "High-performance leakage prevention family pack." },
+            { id: 7, option: "OPTION 7", name: "HUGGIES NATUREMADE NEWBORN PACK OF 3", price: 45, category: "baby", desc: "Silky soft protection specially made for newborns." },
+            { id: 8, option: "OPTION 8", name: "HUGGIES PLATINUM JUSTBORN PACK OF 3", price: 40, category: "baby", desc: "Feather-light platinum protection for delicate skin." }
+        ];
+
+        // Cart State
+        let cart = {};
+
+        // Render Products
+        function renderProducts(filter = 'all') {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+            filtered.forEach(p => {
+                const qty = cart[p.id] || 0;
+                
+                const cardHtml = `
+                    <div class="bg-dark-card border ${qty > 0 ? 'border-gold-500' : 'border-dark-border'} rounded-xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-gold-500/50">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-bold tracking-widest px-2.5 py-0.5 rounded bg-gold-500/10 text-gold-400 border border-gold-500/20 uppercase">
+                                    ${p.option}
+                                </span>
+                                <span class="text-xs text-emerald-400 font-medium">Free Delivery</span>
+                            </div>
+                            
+                            <h4 class="font-bold text-sm text-gray-100 mb-1 leading-snug">${p.name}</h4>
+                            <p class="text-xs text-dark-muted mb-4">${p.desc}</p>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-3 border-t border-dark-border/60">
+                            <div>
+                                <span class="text-xs text-dark-muted block">Price</span>
+                                <span class="text-lg font-bold text-gold-300">$${p.price}</span>
+                            </div>
+
+                            <div class="flex items-center gap-2 bg-dark-base border border-dark-border rounded-lg p-1">
+                                <button onclick="updateQty(${p.id}, -1)" class="w-7 h-7 rounded-md bg-dark-card text-gray-300 hover:bg-gold-500 hover:text-black flex items-center justify-center text-xs font-bold transition-colors">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <span id="qty-${p.id}" class="w-6 text-center text-xs font-bold text-gold-300">${qty}</span>
+                                <button onclick="updateQty(${p.id}, 1)" class="w-7 h-7 rounded-md bg-dark-card text-gray-300 hover:bg-gold-500 hover:text-black flex items-center justify-center text-xs font-bold transition-colors">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        // Category Filter
+        function filterCategory(cat) {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-gold-500', 'bg-gold-500/20', 'text-gold-300');
+                btn.classList.add('border-dark-border', 'bg-dark-card', 'text-dark-muted');
+            });
+
+            const activeBtn = document.getElementById(`tab-${cat}`);
+            activeBtn.classList.add('active', 'border-gold-500', 'bg-gold-500/20', 'text-gold-300');
+            activeBtn.classList.remove('border-dark-border', 'bg-dark-card', 'text-dark-muted');
+
+            renderProducts(cat);
+        }
+
+        // Update Quantity
+        function updateQty(id, change) {
+            const current = cart[id] || 0;
+            const updated = Math.max(0, current + change);
+            
+            if (updated === 0) {
+                delete cart[id];
+            } else {
+                cart[id] = updated;
+            }
+
+            // Update UI
+            const qtyElement = document.getElementById(`qty-${id}`);
+            if (qtyElement) qtyElement.innerText = updated;
+
+            updateCartSummary();
+            renderProducts(getCurrentCategory());
+        }
+
+        function getCurrentCategory() {
+            const active = document.querySelector('.category-btn.active');
+            if (active.id === 'tab-saffron') return 'saffron';
+            if (active.id === 'tab-baby') return 'baby';
+            return 'all';
+        }
+
+        // Update Cart Calculation
+        function updateCartSummary() {
+            let subtotal = 0;
+            let totalItems = 0;
+            const breakdownContainer = document.getElementById('cart-breakdown');
+            breakdownContainer.innerHTML = '';
+
+            const activeItemIds = Object.keys(cart);
+
+            if (activeItemIds.length === 0) {
+                breakdownContainer.innerHTML = '<p class="text-dark-muted text-center py-6">No items selected yet.<br>Select products above to build your order.</p>';
+            } else {
+                activeItemIds.forEach(id => {
+                    const item = products.find(p => p.id == id);
+                    const qty = cart[id];
+                    const itemTotal = item.price * qty;
+                    subtotal += itemTotal;
+                    totalItems += qty;
+
+                    breakdownContainer.innerHTML += `
+                        <div class="flex justify-between items-center text-xs">
+                            <div>
+                                <p class="font-bold text-gray-200">${item.option}</p>
+                                <p class="text-[11px] text-dark-muted">${qty} x $${item.price}</p>
+                            </div>
+                            <span class="font-bold text-gold-300">$${itemTotal}</span>
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById('subtotal-val').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('total-val').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('mobile-total-val').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cart-item-count').innerText = `${totalItems} Items`;
+        }
+
+        // Send Order via WhatsApp
+        function sendOrderViaWhatsApp() {
+            const activeItemIds = Object.keys(cart);
+            if (activeItemIds.length === 0) {
+                alert('Please select at least one item before placing your order.');
+                return;
+            }
+
+            const custName = document.getElementById('cust-name').value.trim();
+            const custAddress = document.getElementById('cust-address').value.trim();
+            const custNotes = document.getElementById('cust-notes').value.trim();
+
+            if (!custName || !custAddress) {
+                alert('Please fill in your Name and Delivery Address.');
+                return;
+            }
+
+            // Construct formatted message
+            let msg = `*NEW ORDER - SAASSHO+ AYZEL*\n`;
+            msg += `------------------------------------\n`;
+            msg += `*CUSTOMER DETAILS:*\n`;
+            msg += `• *Name:* ${custName}\n`;
+            msg += `• *Delivery Address:* ${custAddress}\n`;
+            if (custNotes) msg += `• *Remarks:* ${custNotes}\n`;
+            msg += `------------------------------------\n`;
+            msg += `*ORDER ITEMS:*\n`;
+
+            let subtotal = 0;
+            activeItemIds.forEach(id => {
+                const item = products.find(p => p.id == id);
+                const qty = cart[id];
+                const lineTotal = item.price * qty;
+                subtotal += lineTotal;
+                msg += `> • *${item.option}:* ${item.name}\n  Qty: ${qty} x $${item.price} = *$${lineTotal}*\n`;
+            });
+
+            msg += `------------------------------------\n`;
+            msg += `*Islandwide Delivery:* FREE\n`;
+            msg += `*TOTAL AMOUNT DUE: $${subtotal.toFixed(2)}*\n`;
+            msg += `------------------------------------\n`;
+            msg += `Please confirm my order and share payment instructions. Thank you!`;
+
+            // Open WhatsApp Chat
+            const encodedMsg = encodeURIComponent(msg);
+            const waUrl = `https://wa.me/${targetPhoneNumber}?text=${encodedMsg}`;
+            
+            window.open(waUrl, '_blank');
+        }
+
+        // Initialize
+        renderProducts();
+    </script>
+</body>
+</html>
